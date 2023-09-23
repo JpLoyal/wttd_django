@@ -28,7 +28,6 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = True
 #DEBUG = config('DEBUG', default=False, cast=bool)
 
-
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default=[], cast=Csv())
 
 # Application definition
@@ -41,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'eventex.core',
+    'eventex.subscriptions',
 ]
 
 MIDDLEWARE = [
