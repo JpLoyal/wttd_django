@@ -1,0 +1,15 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <img src="{% static 'core/img/sad-face.png' %}">
+    <h1>{% block msgErro %}Essa página não existe! {% endblock msgErro %}</h1>
+    <nav>
+        <p><a href="http://127.0.0.1:8000/">Voltar à página inicial</a></p>
+    </nav>
+</body>
+</html>

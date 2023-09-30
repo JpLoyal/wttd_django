@@ -30,6 +30,8 @@ DEBUG = False
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default=[], cast=Csv())
 
+DEFAULT_FROM_EMAIL = 'sirjpcastro@gmail.com'
+
 # Application definition
 
 INSTALLED_APPS = [

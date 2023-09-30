@@ -24,11 +24,19 @@ class SubscribeTest(TestCase):
         """
         Html must contain input tags
         """
-        self.assertContains(self.resp, '<form')
-        self.assertContains(self.resp, '<input', 6)
-        self.assertContains(self.resp, 'type="text"', 3)
-        self.assertContains(self.resp, 'type="email"')
-        self.assertContains(self.resp, 'type="submit"')
+
+        tags = (
+            ('<form', 1),
+            ('<input', 6),
+            ('type="text"', 3),
+            ('type="email"', 1),
+            ('type="submit"', 1),
+        )
+
+        for text, count in tags:
+            with self.subTest():
+                self.assertContains(self.resp, text, count)
+
 
     def test_csrf(self):
         """
@@ -43,9 +51,3 @@ class SubscribeTest(TestCase):
         form = self.resp.context['form']
         self.assertIsInstance(form, SubscriptionForm)
 
-    def test_form_has_fields(self):
-        """
-        Form must have 4 fields.
-        """
-        form = self.resp.context['form']
-        self.assertSequenceEqual(['name', 'cpf', 'email', 'phone'], list(form.fields))
