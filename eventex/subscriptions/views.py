@@ -6,6 +6,8 @@ from django.core import mail
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 
+from eventex.subscriptions.models import Subscription
+
 
 def subscribe(request):
     if request.method == 'POST':
@@ -22,11 +24,13 @@ def create(request):
                           {'form': form})
 
         # Send Email
-        _send_mail('Confirmação de inscrição',
-                   settings.DEFAULT_FROM_EMAIL,
-                   form.cleaned_data['Email'],
-                   'subscriptions/subscription_email.txt',
-                   form.cleaned_data)
+        #_send_mail('Confirmação de inscrição',
+        #           settings.DEFAULT_FROM_EMAIL,
+        #           form.cleaned_data['email'],
+        #           'subscriptions/subscription_email.txt',
+        #           form.cleaned_data)
+
+        Subscription.objects.create(**form.cleaned_data)
 
         # Success feedback
         messages.success(request, 'Inscrição realizada com sucesso!')

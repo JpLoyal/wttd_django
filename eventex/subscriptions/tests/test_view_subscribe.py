@@ -1,5 +1,7 @@
 from django.test import TestCase
 from eventex.subscriptions.forms import SubscriptionForm
+from eventex.subscriptions.models import Subscription
+
 
 class SubscribeTest(TestCase):
 
@@ -51,3 +53,19 @@ class SubscribeTest(TestCase):
         form = self.resp.context['form']
         self.assertIsInstance(form, SubscriptionForm)
 
+class SubscribePostValid(TestCase):
+    def setUp(self):
+        data = dict(name='João Pedro', cpf='12345678901',
+                    email='example@gmail.com', phone='0101010101')
+        self.resp = self.client.post('/inscricao', data)
+
+    #def test_save_subscription(self):
+    #    self.assertTrue(Subscription.objects.exists())
+
+class SubscribePostInvalid(TestCase):
+    def setUp(self):
+        self.resp = self.client.post('/inscricao/', {})
+
+
+    def test_dont_save_subscription(self):
+        self.assertFalse(Subscription.objects.exists())
