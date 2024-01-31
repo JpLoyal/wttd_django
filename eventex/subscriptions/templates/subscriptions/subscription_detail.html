@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inscrição Realizada!</title>
+</head>
+<body>
+
+    <h1>Olá! Tudo bem?</h1>
+
+    <h2>Muito obrigado por se inscrever no Eventex.</h2>
+
+    <h2>Estes foram os dados que você nos forneceu:</h2>
+
+    <ul>
+        <li>Nome: {{ subscription.name }}</li>
+        <li>CPF: {{ subscription.cpf }}</li>
+        <li>Email: {{ subscription.email }}</li>
+        <li>Telefone: {{ subscription.phone }}</li>
+    </ul>
+
+    <p>Em até 48 horas úteis, a nossa equipe entrará em contato com você para concluirmos a sua matrícula.</p>
+
+    <p>Atenciosamente,</p>
+    <p>--</p>
+    <p>Equipe do Eventex</p>
+
+</body>
+</html>

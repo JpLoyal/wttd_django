@@ -15,13 +15,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-
-import eventex.core.views
-from eventex.subscriptions.views import subscribe
+from django.urls import path, include
+from eventex.core.views import home, speaker_detail, talk_list
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', eventex.core.views.home),
-    path('inscricao/', subscribe),
+    path('', home, name='home'),
+    path('inscricao/', include('eventex.subscriptions.urls')),
+    path('palestrantes/<slug:slug>/', speaker_detail, name='speaker_detail'),
+    path('palestras/', talk_list, name='talk_list'),
 ]
